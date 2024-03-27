@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5326EB032BAB276F00B0C9C9 /* PokeAPIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5326EB022BAB276F00B0C9C9 /* PokeAPIApp.swift */; };
-		5326EB052BAB276F00B0C9C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5326EB042BAB276F00B0C9C9 /* ContentView.swift */; };
 		5326EB072BAB277000B0C9C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5326EB062BAB277000B0C9C9 /* Assets.xcassets */; };
 		5326EB0A2BAB277000B0C9C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5326EB092BAB277000B0C9C9 /* Preview Assets.xcassets */; };
 		5326EB142BAB277000B0C9C9 /* PokeAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5326EB132BAB277000B0C9C9 /* PokeAPITests.swift */; };
@@ -41,7 +40,6 @@
 /* Begin PBXFileReference section */
 		5326EAFF2BAB276F00B0C9C9 /* PokeAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5326EB022BAB276F00B0C9C9 /* PokeAPIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeAPIApp.swift; sourceTree = "<group>"; };
-		5326EB042BAB276F00B0C9C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5326EB062BAB277000B0C9C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5326EB092BAB277000B0C9C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5326EB0F2BAB277000B0C9C9 /* PokeAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokeAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +106,6 @@
 				53EBD7642BAB913A005739E9 /* View */,
 				53EBD7632BAB9136005739E9 /* ViewModel */,
 				5326EB022BAB276F00B0C9C9 /* PokeAPIApp.swift */,
-				5326EB042BAB276F00B0C9C9 /* ContentView.swift */,
 				5326EB062BAB277000B0C9C9 /* Assets.xcassets */,
 				5326EB082BAB277000B0C9C9 /* Preview Content */,
 			);
@@ -302,7 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5356E0C62BB19D4400345914 /* Pokemon.swift in Sources */,
-				5326EB052BAB276F00B0C9C9 /* ContentView.swift in Sources */,
 				5356E0C82BB1A47A00345914 /* PokemonViewModel.swift in Sources */,
 				5326EB032BAB276F00B0C9C9 /* PokeAPIApp.swift in Sources */,
 				53EBD7672BAB91AA005739E9 /* PokemonCell.swift in Sources */,
