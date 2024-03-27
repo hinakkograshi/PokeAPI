@@ -43,7 +43,8 @@ private extension PokemonViewModel {
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             guard let data = data?.parseData(removeString: "null,") else { return }
             guard let pokemon = try? JSONDecoder().decode([Pokemon].self, from: data) else { return }
-            DispatchQueue.main.async {
+
+            Task { @MainActor in
                 self.pokemons = pokemon
             }
         }
