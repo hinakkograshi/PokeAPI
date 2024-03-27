@@ -20,7 +20,10 @@ struct PokedexView: View {
                 LazyVGrid(columns: gridItems, spacing: 20) {
                     // 発行した配列が更新されるたび、全ての変更を読み込み
                     ForEach(viewModel.pokemon) { pokemon in
-                        PokemonCell(pokemon: pokemon, viewModel: viewModel)
+                        PokemonCell(
+                            pokemon: pokemon,
+                            backgroundColor: Color(viewModel.backgroundColor(forType: pokemon.type))
+                        )
                     }
                 }
             }
