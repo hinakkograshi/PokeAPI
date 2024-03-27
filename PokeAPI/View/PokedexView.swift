@@ -15,23 +15,23 @@ struct PokedexView: View {
     @ObservedObject var viewModel = PokemonViewModel()
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVGrid(columns: gridItems, spacing: 20) {
-                    // 発行した配列が更新されるたび、全ての変更を読み込み
-                    ForEach(viewModel.pokemons) { pokemon in
-                        PokemonCell(
-                            pokemon: pokemon,
-                            backgroundColor: viewModel.backgroundColor(forType: pokemon.type)
-                        )
-                    }
+        ScrollView {
+            LazyVGrid(columns: gridItems, spacing: 20) {
+                // 発行した配列が更新されるたび、全ての変更を読み込み
+                ForEach(viewModel.pokemons) { pokemon in
+                    PokemonCell(
+                        pokemon: pokemon,
+                        backgroundColor: viewModel.backgroundColor(forType: pokemon.type)
+                    )
                 }
             }
-            .navigationTitle("Pokedex")
         }
+        .navigationTitle("Pokedex")
     }
 }
 
 #Preview {
-    PokedexView()
+    NavigationStack {
+        PokedexView()
+    }
 }
