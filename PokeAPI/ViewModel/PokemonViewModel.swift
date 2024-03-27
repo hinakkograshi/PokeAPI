@@ -6,18 +6,39 @@
 //
 
 import SwiftUI
-//話し手
-class PokemonViewModel: ObservableObject {
-    //オブジェクトが変更されるたびに
-    //発行が行われるたび通知を送り、ポケモン配列を使用してビューを再構成する
-    @Published var pokemon = [Pokemon]()
-    let baseUrl = "https://pokedex-bb36f.firebaseio.com/pokemon.json"
+
+// 話し手
+final class PokemonViewModel: ObservableObject {
+    // オブジェクトが変更されるたびに通知を送り、ポケモン配列を使用してビューを再構成する
+    @Published private(set) var pokemon: [Pokemon] = []
+
+    private let baseUrlString = "https://pokedex-bb36f.firebaseio.com/pokemon.json"
+
     init() {
         fetchPokemon()
     }
 
+    func backgroundColor(forType type: String) -> UIColor {
+        switch type {
+        case "fire": .systemRed
+        case "poison": .systemGreen
+        case "water": .systemBlue
+        case "electric": .systemYellow
+        case "psychic": .systemPurple
+        case "normal": .systemOrange
+        case "ground": .systemGray
+        case "flying": .systemTeal
+        case "fairy": .systemPink
+        default: .systemIndigo
+        }
+    }
+}
+
+// MARK: - Privates
+
+private extension PokemonViewModel {
     func fetchPokemon() {
-        guard let url = URL(string: baseUrl) else { return }
+        guard let url = URL(string: baseUrlString) else { return }
         let urlRequest = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             guard let data = data?.parseData(removeString: "null,") else { return }
@@ -28,24 +49,9 @@ class PokemonViewModel: ObservableObject {
         }
         task.resume()
     }
+}
 
-    func backgroundColor(forType type: String) -> UIColor {
-        switch type {
-        case "fire": return .systemRed
-        case "poison": return .systemGreen
-        case "water": return .systemBlue
-        case "electric": return .systemYellow
-        case "psychic": return .systemPurple
-        case "normal": return .systemOrange
-        case "ground": return .systemGray
-        case "flying": return .systemTeal
-        case "fairy": return .systemPink
-        default: return .systemIndigo
-        }
-    }
-    }
-
-extension Data {
+private extension Data {
     func parseData(removeString string: String) -> Data? {
         let dataAsString = String(data: self, encoding: .utf8)
         let parseDataString = dataAsString?.replacingOccurrences(of: string, with: "")
