@@ -22,7 +22,7 @@ struct PokedexView: View {
                     ForEach(viewModel.pokemon) { pokemon in
                         PokemonCell(
                             pokemon: pokemon,
-                            backgroundColor: Color(viewModel.backgroundColor(forType: pokemon.type))
+                            backgroundColor: viewModel.backgroundColor(forType: pokemon.type)
                         )
                     }
                 }

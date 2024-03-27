@@ -18,18 +18,18 @@ final class PokemonViewModel: ObservableObject {
         fetchPokemon()
     }
 
-    func backgroundColor(forType type: String) -> UIColor {
+    func backgroundColor(forType type: String) -> Color {
         switch type {
-        case "fire": .systemRed
-        case "poison": .systemGreen
-        case "water": .systemBlue
-        case "electric": .systemYellow
-        case "psychic": .systemPurple
-        case "normal": .systemOrange
-        case "ground": .systemGray
-        case "flying": .systemTeal
-        case "fairy": .systemPink
-        default: .systemIndigo
+        case "fire": .red
+        case "poison": .green
+        case "water": .blue
+        case "electric": .yellow
+        case "psychic": .purple
+        case "normal": .orange
+        case "ground": .gray
+        case "flying": .teal
+        case "fairy": .pink
+        default: .indigo
         }
     }
 }
