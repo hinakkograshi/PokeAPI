@@ -13,17 +13,15 @@ struct PokedexView: View {
     // この人たちを監視している　観測
     @ObservedObject var viewModel = PokemonViewModel()
     var body: some View {
-        NavigationView {
             ScrollView {
                 LazyVGrid(columns: gridItems, spacing: 20) {
                     // 発行した配列が更新されるたび、全ての変更を読み込み
                     ForEach(viewModel.pokemon) { pokemon in
-                        PokemonCell(pokemon: pokemon, backgroundColor: Color(viewModel.backgroundColor(forType: pokemon.type)))
+                        PokemonCell(pokemon: pokemon, backgroundColor: viewModel.backgroundColor(forType: pokemon.type))
                     }
                 }
             }
             .navigationTitle("Pokedex")
-        }
     }
 }
 
