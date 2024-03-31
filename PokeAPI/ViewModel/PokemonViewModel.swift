@@ -18,7 +18,7 @@ final class PokemonViewModel: ObservableObject {
                 let pokemonData = try await fetchPokemon()
                 self.pokemon = pokemonData
             } catch {
-                print(error)
+                print("⭐️\(error)")
             }
         }
     }
