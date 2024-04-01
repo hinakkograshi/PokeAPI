@@ -7,11 +7,11 @@
 
 import Foundation
 
-public enum APIClientError: Error {
+enum APIClientError: LocalizedError {
     case invalidURL
-    case noDataError
+    case noData
     case responseError
     case badStatus(statusCode: Int)
     case networkError
-    case decodeError
+    case decodeFailed
 }
