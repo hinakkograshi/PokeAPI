@@ -10,11 +10,8 @@ import SwiftUI
 final class PokemonViewModel: ObservableObject {
     // オブジェクトが変更されるたびに
     // 発行が行われるたび通知を送り、ポケモン配列を使用してビューを再構成する
-    @Published private(set) var pokemon: [Pokemon] = []
+    @Published var pokemon: [Pokemon] = []
     let baseUrlString = "https://pokedex-bb36f.firebaseio.com/pokemon.json"
-    init() {
-        fetchPokemon()
-    }
 
     func backgroundColor(forType type: String) -> Color {
         switch type {
@@ -34,18 +31,28 @@ final class PokemonViewModel: ObservableObject {
 
 // MARK: - Private
 
-private extension PokemonViewModel {
-    func fetchPokemon() {
-        guard let url = URL(string: baseUrlString) else { return }
-        let urlRequest = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard let data = data?.parseData(removeString: "null,") else { return }
-            guard let pokemon = try? JSONDecoder().decode([Pokemon].self, from: data) else { return }
-            Task { @MainActor in
-                self.pokemon = pokemon
-            }
+extension PokemonViewModel {
+    func fetchPokemon() async throws -> [Pokemon] {
+        guard let url = URL(string: baseUrlString) else {
+            throw APIClientError.invalidURL
         }
-        task.resume()
+        let urlRequest = URLRequest(url: url)
+        let (data, response) = try await URLSession.shared.data(for: urlRequest)
+        guard let pokeData = data.parseData(removeString: "null,") else { throw APIClientError.noData }
+        guard let httpStatus = response as? HTTPURLResponse else {
+            throw APIClientError.responseError
+        }
+        switch httpStatus.statusCode {
+        case 200 ..< 400:
+            guard let responseData = try? JSONDecoder().decode([Pokemon].self, from: pokeData) else {
+                throw APIClientError.decodeFailed
+            }
+            return responseData
+        case 400...:
+            throw APIClientError.badStatus(statusCode: httpStatus.statusCode)
+        default:
+            throw APIClientError.badStatus(statusCode: httpStatus.statusCode)
+        }
     }
 }
 
