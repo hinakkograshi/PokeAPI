@@ -21,6 +21,14 @@ struct PokedexView: View {
                     }
                 }
             }
+            .task { @MainActor in
+                do {
+                    let pokemon = try await viewModel.fetchPokemon()
+                    viewModel.pokemon = pokemon
+                } catch {
+                    print("⭐️\(error)")
+                }
+            }
             .navigationTitle("Pokedex")
     }
 }
